@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q10: Race Car Components in Vue 3</title>
+</head>
+<body>
+  <div id="app">
+ <!-- Navigation bar -->
+ <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+    <h1>Q10: Race Car Components in Vue 3</h1>
+
+    <!-- Part a: Props -->
+    <h2>a. Props</h2>
+    <race-car :car-name="playerCar"></race-car>
+
+    <!-- Part b: Events ($emit) -->
+    <h2>b. Events ($emit)</h2>
+    <race-car-controls @boost="boostCar"></race-car-controls>
+    <p><strong>Boost Status:</strong> {{ boostStatus }}</p>
+
+    <!-- Part c: Slots -->
+    <h2>c. Slots</h2>
+    <race-track>
+      <p>This is the race track. Get ready for an exciting race!</p>
+    </race-track>
+  </div>
+
+  <!-- Definitions of Vue 3 Concepts -->
+  <div>
+    <h2>Vue 3 Concepts:</h2>
+    <p>
+      <strong>a. Props:</strong> In Vue 3, components can accept data passed from their parent components through props. Props are custom attributes that allow data to be passed down from a parent component to a child component.
+    </p>
+    <p>
+      <strong>b. Events [$emit]:</strong> Vue 3 components can communicate with their parent components by emitting custom events. The `$emit` method allows a child component to trigger an event that can be listened to and handled by the parent component.
+    </p>
+    <p>
+      <strong>c. Slots:</strong> Slots are a powerful feature in Vue 3 that allows you to create flexible and reusable components. They provide a way to pass content from the parent component into the child component's template, enabling dynamic and customizable rendering of content within the component.
+    </p>
+  </div>
+</div>
+
+
+  <!-- Vue 3 script -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+  <script>
+    // Race Car Component (Part a: Props)
+    const RaceCar = {
+  props: ['carName'],
+  template: `
+    <div>
+      <p><strong>Race Car:</strong> {{ carName }}</p>
+      <img class="Car" src="red car.jpeg" alt="Red Car">
+    </div>
+  `
+};
+
+    // Race Car Controls Component (Part b: Events)
+    const RaceCarControls = {
+      template: `
+        <div>
+          <button @click="boost">Boost!</button>
+        </div>
+      `,
+      methods: {
+        boost() {
+          this.$emit('boost', 'Car boosted!');
+        }
+      }
+    };
+
+    // Race Track Component (Part c: Slots)
+    const RaceTrack = {
+      template: `
+        <div>
+          <p><strong>Race Track:</strong></p>
+          <slot></slot>
+        </div>
+      `
+    };
+
+    const app = Vue.createApp({
+      data() {
+        return {
+          playerCar: 'Red Racer',
+          boostStatus: ''
+        };
+      },
+      methods: {
+        boostCar(message) {
+          this.boostStatus = message;
+        }
+      },
+      components: {
+        'race-car': RaceCar,
+        'race-car-controls': RaceCarControls,
+        'race-track': RaceTrack
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q7: Event Handling in Vue 3</title>
+</head>
+<body>
+  <div id="app">
+ <!-- Navigation bar -->
+ <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+    <h1>Q7: Event Handling in Vue 3</h1>
+
+    <!-- a. Inline Handlers -->
+    <h2>a. Inline Handlers</h2>
+    <button @click="showAlertInline">Click me (Inline Handler)!</button>
+
+    <!-- b. Method Handlers -->
+    <h2>b. Method Handlers</h2>
+    <button @click="showAlertMethod">Click me (Method Handler)!</button>
+  </div>
+
+  <!-- Definitions -->
+  <div id="definitions">
+    <h2>Vue 3 Event Handling Concepts</h2>
+    <dl>
+      <!-- a. Inline Handlers -->
+      <dt><strong>a. Inline Handlers:</strong></dt>
+      <dd>
+        <p>Inline event handlers in Vue 3 allow you to directly specify event listeners within the template using the <code>@event</code> syntax. For example, <code>@click="handler"</code> attaches an event listener for the <code>click</code> event to the element and calls the specified method <code>handler</code> when the event occurs.</p>
+      </dd>
+
+      <!-- b. Method Handlers -->
+      <dt><strong>b. Method Handlers:</strong></dt>
+      <dd>
+        <p>Method event handlers in Vue 3 involve binding an event to a method defined in the component's methods object. You can use the <code>@event="methodName"</code> syntax to associate an event with a method. When the event occurs, Vue 3 invokes the specified method <code>methodName</code>.</p>
+      </dd>
+    </dl>
+  </div>
+
+  <!-- Vue 3 script -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+  <script>
+    const app = Vue.createApp({
+      methods: {
+        showAlertInline() {
+          alert('Inline handler: Button clicked!');
+        },
+        showAlertMethod() {
+          alert('Method handler: Button clicked!');
+        },
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

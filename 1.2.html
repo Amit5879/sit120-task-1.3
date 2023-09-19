@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles1.2.css">
+<title>Welcome Page</title>
+<style>
+  /* Your CSS styles here */
+  body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: lightgray;
+    font-family: Arial, sans-serif;
+  }
+  .header {
+    padding: 20px;
+    background-color: burlywood;
+    color: grey;
+  }
+  h1 {
+    font-size: 3em;
+    margin: 0;
+  }
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="1.2.html">Home</a>
+    
+    </div> 
+  <div class="header">
+    <h1 id="welcomeTitle">***WELCOME!***</h1>
+  </div>
+  <img class="responsive-img" src="ph1.jpeg" style="max-width:100%;height:auto" alt="Responsive Image">
+
+  <div>
+    <h2>Explore reptile names!!</h2>
+    <input type="text" id="stringInput" placeholder="Enter a string">
+    <button id="toUpperCaseButton">Convert to Uppercase</button>
+    <button id="toLowerCaseButton">Convert to Lowercase</button>
+    <button id="substringButton">Get Substring</button>
+    <button id="charAtButton">Get Character at Index</button>
+    <button id="startsWithButton">Check if Starts With</button>
+    <p id="stringResult"></p>
+  </div>
+
+  <div>
+    <h2>Manipulate reptile age</h2>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button id="toFixedButton">Round to Decimal Places</button>
+    <button id="toExponentialButton">Convert to Exponential</button>
+    <button id="parseIntButton">Extract Integer Part</button>
+    <button id="absButton">Get Absolute Value</button>
+    <p id="numberResult"></p>
+  </div>  
+
+  <div>
+    <h2>Interact with Reptile Names</h2>
+    <button id="arrayLengthButton">Get Number of Reptile Names</button>
+    <button id="joinButton">Join Reptile Names</button>
+    <button id="popButton">Remove Last Reptile Name</button>
+    <button id="pushButton">Add New Reptile Name</button>
+    <button id="indexOfButton">Find Index of Reptile Name</button>
+    <p id="arrayResult"></p>
+  </div>
+
+  <div>
+    <h2>Retrieve the date</h2>
+    <button id="getCurrentDateButton">Get Current Date</button>
+    <button id="getFullYearButton">Get Year</button>
+    <button id="getMonthButton">Get Month</button>
+    <button id="getDayButton">Get Day</button>
+    <button id="getHoursButton">Get Hours</button>
+    <p id="dateResult"></p>
+  </div>
+
+  <div>
+    <h2>Functions</h2>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <input type="number" id="num2Input" placeholder="Enter second number"> <!-- Add this line -->
+    <button id="greetButton">Greet</button>
+    <button id="multiplyButton">Multiply</button>
+    <p id="functionResult"></p>
+  </div>
+  
+  <div>
+    <h2>Guess Your Reptile's Age</h2>
+    <input type="number" id="reptileAgeInput" placeholder="Enter your reptile's age">
+    <button id="guessAgeButton">Guess Age</button>
+    <p id="guessResult"></p>
+  </div>
+
+  <script>
+    // String methods
+    var stringInput = document.getElementById("stringInput");
+    var toUpperCaseButton = document.getElementById("toUpperCaseButton");
+    var toLowerCaseButton = document.getElementById("toLowerCaseButton");
+    var substringButton = document.getElementById("substringButton");
+    var charAtButton = document.getElementById("charAtButton");
+    var startsWithButton = document.getElementById("startsWithButton");
+    var stringResult = document.getElementById("stringResult");
+
+    toUpperCaseButton.addEventListener("click", function() {
+      stringResult.textContent = stringInput.value.toUpperCase();
+    });
+
+    toLowerCaseButton.addEventListener("click", function() {
+      stringResult.textContent = stringInput.value.toLowerCase();
+    });
+
+    substringButton.addEventListener("click", function() {
+      stringResult.textContent = stringInput.value.substring(1, 4);
+    });
+
+    charAtButton.addEventListener("click", function() {
+      stringResult.textContent = "Character at index 3: " + stringInput.value.charAt(3);
+    });
+
+    startsWithButton.addEventListener("click", function() {
+      stringResult.textContent = "Starts with 'Py': " + stringInput.value.startsWith("Py");
+    });
+
+    // Number methods
+    var numberInput = document.getElementById("numberInput");
+    var toFixedButton = document.getElementById("toFixedButton");
+    var toExponentialButton = document.getElementById("toExponentialButton");
+    var numberResult = document.getElementById("numberResult");
+    var parseIntButton = document.getElementById("parseIntButton");
+    var absButton = document.getElementById("absButton");
+
+    toFixedButton.addEventListener("click", function() {
+    console.log("Button clicked!"); // Add this line
+    numberResult.textContent = "To Fixed (2 decimal places): " + numberInput.value.toFixed(2);
+    });
+
+    toExponentialButton.addEventListener("click", function() {
+    var enteredNumber = parseFloat(numberInput.value);
+    if (!isNaN(enteredNumber)) {
+      var exponentialNotation = enteredNumber.toExponential(2);
+      numberResult.textContent = "Exponential notation: " + exponentialNotation;
+    } else {
+      numberResult.textContent = "Please enter a valid number.";
+    }
+    });
+
+    parseIntButton.addEventListener("click", function() {
+      numberResult.textContent = "Parsed integer: " + parseInt(numberInput.value);
+    });
+
+    absButton.addEventListener("click", function() {
+      numberResult.textContent = "Absolute value: " + Math.abs(numberInput.value);
+    });
+
+    // Array methods
+    var reptileNames = ["Python", "Cobra", "Turtle", "Lizard", "Alligator"];
+    var arrayLengthButton = document.getElementById("arrayLengthButton");
+    var joinButton = document.getElementById("joinButton");
+    var popButton = document.getElementById("popButton");
+    var pushButton = document.getElementById("pushButton");
+    var indexOfButton = document.getElementById("indexOfButton");
+    var arrayResult = document.getElementById("arrayResult");
+
+    arrayLengthButton.addEventListener("click", function() {
+      arrayResult.textContent = "Number of reptile names: " + reptileNames.length;
+    });
+
+    joinButton.addEventListener("click", function() {
+      arrayResult.textContent = "Joined reptile names: " + reptileNames.join(", ");
+    });
+
+    popButton.addEventListener("click", function() {
+      arrayResult.textContent = "Last reptile name removed: " + reptileNames.pop();
+    });
+
+    pushButton.addEventListener("click", function() {
+      reptileNames.push("Chameleon");
+      arrayResult.textContent = "Updated reptile names: " + reptileNames.join(", ");
+    });
+
+    indexOfButton.addEventListener("click", function() {
+      arrayResult.textContent = "Index of 'Turtle': " + reptileNames.indexOf("Turtle");
+    });
+
+    // Date methods
+    var getCurrentDateButton = document.getElementById("getCurrentDateButton");
+    var getFullYearButton = document.getElementById("getFullYearButton");
+    var getMonthButton = document.getElementById("getMonthButton");
+    var getDayButton = document.getElementById("getDayButton");
+    var getHoursButton = document.getElementById("getHoursButton");
+    var dateResult = document.getElementById("dateResult");
+
+    getCurrentDateButton.addEventListener("click", function() {
+      var currentDate = new Date();
+      dateResult.textContent = "Current date: " + currentDate.toString();
+    });
+
+    getFullYearButton.addEventListener("click", function() {
+      var currentDate = new Date();
+      dateResult.textContent = "Year: " + currentDate.getFullYear();
+    });
+
+    getMonthButton.addEventListener("click", function() {
+      var currentDate = new Date();
+      dateResult.textContent = "Month: " + (currentDate.getMonth() + 1);
+    });
+
+    getDayButton.addEventListener("click", function() {
+      var currentDate = new Date();
+      dateResult.textContent = "Day: " + currentDate.getDate();
+    });
+
+    getHoursButton.addEventListener("click", function() {
+      var currentDate = new Date();
+      dateResult.textContent = "Hours: " + currentDate.getHours();
+    });
+
+   
+    // Function methods
+  function greet(name) {
+  return "Hello, " + name + "!";
+ }
+
+ function multiply(a, b) {
+  return a * b;
+}
+
+  var nameInput = document.getElementById("nameInput");
+  var num2Input = document.getElementById("num2Input"); // Add this line
+  var greetButton = document.getElementById("greetButton");
+  var multiplyButton = document.getElementById("multiplyButton");
+  var functionResult = document.getElementById("functionResult");
+
+ greetButton.addEventListener("click", function() {
+  var name = nameInput.value;
+  functionResult.textContent = "Greeting: " + greet(name);
+ });
+
+ multiplyButton.addEventListener("click", function() {
+  var num1 = parseFloat(numberInput.value);
+  var num2 = parseFloat(num2Input.value); // Use the new input field
+console.log("num1:", num1);
+console.log("num2:", num2);
+  var multiplicationResult = multiply(num1, num2);
+console.log("Multiplication result:", multiplicationResult);
+functionResult.textContent = "Multiplication result: " + multiplicationResult;
+ });
+
+    // Guess Your Reptile's Age
+    var reptileAgeInput = document.getElementById("reptileAgeInput");
+    var guessAgeButton = document.getElementById("guessAgeButton");
+    var guessResult = document.getElementById("guessResult");
+
+    guessAgeButton.addEventListener("click", function() {
+      var userAge = parseInt(reptileAgeInput.value);
+      var randomGuess = Math.floor(Math.random() * 10) + 1;
+
+      if (userAge === randomGuess) {
+        guessResult.textContent = "Congratulations! We guessed your reptile's age correctly: " + randomGuess;
+      } else {
+        guessResult.textContent = "Oops! Our guess was " + randomGuess + ", but your reptile's age is " + userAge;
+      }
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q6: Gym Application Form with List Rendering</title>
+</head>
+<body>
+  <div id="app">
+ <!-- Navigation bar -->
+ <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+    <h1>Gym Application Form with List Rendering</h1>
+
+    <!-- Full Name -->
+    <div>
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" v-model="applicant.name" required />
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" v-model="applicant.email" required />
+    </div>
+
+    <!-- Phone Number -->
+    <div>
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" v-model="applicant.phone" required />
+    </div>
+
+    <!-- Gender -->
+    <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" v-model="applicant.gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <!-- Interests -->
+    <div>
+      <label>Interests:</label>
+      <div v-for="(interest, key) in interests" :key="key">
+        <input type="checkbox" :id="key" v-model="applicant.interests[key]" />
+        <label :for="key">{{ interest }}</label>
+      </div>
+    </div>
+
+    <!-- Submit Application -->
+    <div>
+      <button @click="submitApplication">Submit Application</button>
+    </div>
+
+    <!-- Application Result -->
+    <div v-if="applicationSubmitted">
+      <p>Application submitted for {{ applicant.name }}.</p>
+      <p>We will contact you at {{ applicant.email }}.</p>
+    </div>
+  </div>
+
+  <div id="definitions">
+    <h2>Vue 3 Concepts Definitions</h2>
+    <dl>
+      <!-- Two-way Data Binding -->
+      <dt><strong>Two-way Data Binding (v-model):</strong></dt>
+      <dd>
+        <p>Two-way data binding is a Vue 3 concept that allows data to be synchronized between the user interface and the application's data model. It is achieved using the <code>v-model</code> directive, which binds an input element's value to a data property. When the input value changes, the data property is updated, and vice versa.</p>
+      </dd>
+
+      <!-- User Interaction (click event) -->
+      <dt><strong>User Interaction (click event):</strong></dt>
+      <dd>
+        <p>User interaction refers to events triggered by users, such as button clicks. In Vue 3, you can handle user interactions using event listeners, like the <code>@click</code> directive. When a user clicks an element with this directive, a specified method is executed, allowing you to respond to the interaction.</p>
+      </dd>
+
+      <!-- Conditional Rendering (v-if) -->
+      <dt><strong>Conditional Rendering (v-if):</strong></dt>
+      <dd>
+        <p>Conditional rendering in Vue 3 enables you to display or hide elements based on specific conditions. The <code>v-if</code> directive is used to conditionally render elements. If the condition evaluates to true, the element is rendered; otherwise, it is removed from the DOM.</p>
+      </dd>
+
+      <!-- List Rendering (v-for) -->
+      <dt><strong>List Rendering (v-for):</strong></dt>
+      <dd>
+        <p>List rendering is a Vue 3 feature that allows you to render lists of items dynamically. The <code>v-for</code> directive is used to iterate over a collection (e.g., an array or object) and generate elements for each item in the collection. It is commonly used to display lists of data, such as options in a dropdown or items in a shopping cart.</p>
+      </dd>
+    </dl>
+  </div>
+
+  <!-- Vue 3 script -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          applicant: {
+            name: '',
+            email: '',
+            phone: '',
+            gender: 'male',
+            interests: {
+              cardio: false,
+              strength: false,
+              yoga: false,
+            },
+          },
+          applicationSubmitted: false,
+          interests: {
+            cardio: 'Cardio',
+            strength: 'Strength Training',
+            yoga: 'Yoga',
+          },
+        };
+      },
+      methods: {
+        submitApplication() {
+          // In a real application, you would submit the data to a server.
+          // For this example, we'll mark it as submitted.
+          this.applicationSubmitted = true;
+        },
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

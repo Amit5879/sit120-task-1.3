@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q9: Watchers in Vue 3</title>
+</head>
+<body>
+  <div id="app">
+ <!-- Navigation bar -->
+ <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+    <h1>Q9: Watchers in Vue 3</h1>
+
+    <!-- Interactive Example -->
+    <div>
+      <label for="input-field">Enter a Number:</label>
+      <input type="number" id="input-field" v-model="userInput" />
+      <p><strong>Input Value:</strong> {{ userInput }}</p>
+    </div>
+
+    <div>
+      <p><strong>Result:</strong> {{ doubledValue }}</p>
+    </div>
+  </div>
+
+  <!-- Definitions -->
+  <div id="definitions">
+    <h2>Vue 3 Watchers Concept</h2>
+    <dl>
+      <!-- Watchers -->
+      <dt><strong>Watchers:</strong></dt>
+      <dd>
+        <p>Watchers are a Vue 3 concept that allows you to perform custom logic when a specific data property changes. They are defined in the `watch` option of a Vue component. Watchers observe changes in one or more data properties and execute a function when the observed data changes. In this example, we have a watcher that observes changes in the `userInput` data property. When `userInput` changes, the watcher calculates the doubled value and updates the `doubledValue` data property accordingly.</p>
+      </dd>
+    </dl>
+  </div>
+
+  <!-- Vue 3 script -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          userInput: 0,
+          doubledValue: 0,
+        };
+      },
+      watch: {
+        userInput(newVal, oldVal) {
+          // Watcher for userInput
+          this.doubledValue = newVal * 2;
+        },
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

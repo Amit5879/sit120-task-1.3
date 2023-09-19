@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q1: Vue 3 Template Syntax</title>
+</head>
+<body>
+     <!-- Navigation bar -->
+  <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+
+  <div id="app">
+     <!-- Heading -->
+    <h1>Q1: Vue 3 Template Syntax</h1>
+
+    <!-- a. Text Interpolation -->
+    <p>Text Interpolation: {{ message }}</p>
+
+    <!-- b. Raw HTML [v-html] -->
+    <p>Raw HTML: <span v-html="rawHTML"></span></p>
+
+    <!-- c. Attribute Bindings [v-bind:id] -->
+    <div :id="elementId">This div has an ID bound using v-bind:id.</div>
+
+    <!-- d. JavaScript expressions inside syntax i.e. {{ }} -->
+    <p>JavaScript Expression: {{ num1 + num2 }}</p>
+  </div>
+
+  <h2>a. Text Interpolation</h2>
+<p>Text Interpolation in Vue 3 is a fundamental concept that allows you to display dynamic content within your templates. By enclosing a variable or expression within double curly braces {{ }}, you can inject the value of that variable or the result of the expression directly into the template. For example, <code>{{ message }}</code> will display the value of the 'message' variable.</p>
+
+<h2>b. Raw HTML [v-html]</h2>
+<p>Raw HTML is used in Vue 3 to render HTML content as-is, without escaping it. The <code>v-html</code> directive is used to bind HTML content to an element. It can be useful when you want to render HTML stored in a variable or retrieved from an external source, maintaining the HTML structure. However, be cautious when using it, as it can pose security risks if not sanitized properly.</p>
+
+<h2>c. Attribute Bindings [v-bind:id]</h2>
+<p>Attribute Bindings, achieved using the <code>v-bind</code> directive, enable you to dynamically set attributes of an HTML element. In this example, <code>:id="elementId"</code> binds the 'id' attribute of an element to the 'elementId' variable, allowing you to change the element's 'id' dynamically based on data or conditions.</p>
+
+<h2>d. JavaScript expressions inside syntax i.e. {{ }}</h2>
+<p>Vue 3 allows you to embed JavaScript expressions directly within double curly braces {{ }} in your template. This enables you to evaluate and display the result of JavaScript expressions within your HTML. For instance, <code>{{ num1 + num2 }}</code> will compute the sum of 'num1' and 'num2' and display the result in the template. This flexibility makes it easy to perform calculations or manipulate data within your templates.</p>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello, Vue!',
+          rawHTML: '<strong>This is strong text.</strong>',
+          elementId: 'bound-id',
+          num1: 5,
+          num2: 7,
+        };
+      },
+    });
+    
+    app.mount('#app');
+  </script>
+</body>
+</html>

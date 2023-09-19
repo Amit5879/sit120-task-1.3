@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q8: Form Input Bindings in Vue 3</title>
+</head>
+<body>
+  <div id="app">
+ <!-- Navigation bar -->
+ <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+    <h1>Q8: Form Input Bindings in Vue 3</h1>
+
+    <!-- a. v-model with Various Input Elements (Create an Account Form) -->
+    <h2>a. v-model with Various Input Elements</h2>
+    <div>
+      <!-- Full Name -->
+      <div>
+        <label for="full-name">Full Name:</label>
+        <input type="text" id="full-name" v-model="account.fullName" required />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" v-model="account.email" required />
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" v-model="account.password" required />
+      </div>
+
+      <!-- Gender -->
+      <div>
+        <label>Gender:</label>
+        <input type="radio" id="male" value="Male" v-model="account.gender" />
+        <label for="male">Male</label>
+        <input type="radio" id="female" value="Female" v-model="account.gender" />
+        <label for="female">Female</label>
+      </div>
+
+      <!-- Interests -->
+      <div>
+        <label>Interests:</label>
+        <input type="checkbox" id="interest1" value="Sports" v-model="account.interests" />
+        <label for="interest1">Sports</label>
+        <input type="checkbox" id="interest2" value="Music" v-model="account.interests" />
+        <label for="interest2">Music</label>
+      </div>
+    </div>
+
+    <!-- b. v-model Modifiers (Interactive Format) -->
+    <h2>b. v-model Modifiers (Interactive Format)</h2>
+    <div>
+      <label for="lazy-input">Lazy Modifier:</label>
+      <input type="text" id="lazy-input" v-model.lazy="lazyText" />
+      <p><strong>Lazy Modifier:</strong> Input value is updated after losing focus.</p>
+    </div>
+
+    <div>
+      <label for="number-input">Number Modifier:</label>
+      <input type="number" id="number-input" v-model.number="numberValue" />
+      <p><strong>Number Modifier:</strong> Input value is converted to a number.</p>
+    </div>
+
+    <div>
+        <label for="text-input">Enter Text:</label>
+        <input type="text" id="text-input" v-model="textForConversion" />
+        <button @click="handleConfirm">Confirm</button>
+        <p><strong>Converted Value:</strong> {{ convertedValue }}</p> <!-- Display the converted value -->
+    </div>
+
+    <div>
+      <label for="trim-input">Trim Modifier:</label>
+      <input type="text" id="trim-input" v-model.trim="trimmedText" />
+      <p><strong>Trim Modifier:</strong> Leading and trailing whitespace is trimmed.</p>
+    </div>
+  </div>
+
+  <div id="definitions">
+    <h2>Vue 3 Form Input Binding Concepts</h2>
+    <dl>
+      <!-- Part a: v-model with Various Input Elements -->
+      <dt><strong>a. v-model with Various Input Elements:</strong></dt>
+      <dd>
+        <p><strong>Full Name:</strong> This input field allows users to enter their full name. It is bound to the <code>account.fullName</code> data property using <code>v-model</code>.</p>
+        <p><strong>Email:</strong> This input field collects the user's email address and is bound to the <code>account.email</code> data property.</p>
+        <p><strong>Password:</strong> Users can enter their password, and the input is bound to the <code>account.password</code> data property.</p>
+        <p><strong>Gender:</strong> Radio buttons for gender selection are bound to the <code>account.gender</code> data property. Users can select either "Male" or "Female."</p>
+        <p><strong>Interests:</strong> Checkboxes for selecting interests are bound to the <code>account.interests</code> data property. Users can select one or more interests, such as "Sports" or "Music."</p>
+      </dd>
+
+      <!-- Part b: v-model Modifiers -->
+      <dt><strong>b. v-model Modifiers:</strong></dt>
+      <dd>
+        <p><strong>Lazy Modifier:</strong> The "Lazy Modifier" is applied to the input field with the ID "lazy-input." It updates the data property (<code>lazyText</code>) only after the input loses focus.</p>
+        <p><strong>Number Modifier:</strong> The "Number Modifier" is applied to the input field with the ID "number-input." It converts the input value to a numeric type and binds it to the <code>numberValue</code> data property.</p>
+        <p><strong>Trim Modifier:</strong> The "Trim Modifier" is applied to the input field with the ID "trim-input." It trims leading and trailing whitespace from the input value before binding it to the <code>trimmedText</code> data property.</p>
+      </dd>
+    </dl>
+  </div>
+
+<!-- Vue 3 script -->
+<script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        // Part a
+        account: {
+          fullName: '',
+          email: '',
+          password: '',
+          gender: '',
+          interests: [],
+        },
+
+        // Part b
+        lazyText: '',
+        numberValue: 0,
+        trimmedText: '',
+        textForConversion: '', // New data property for text input
+        convertedValue: 0, // Store the converted numeric value
+      };
+    },
+    methods: {
+      // Convert text to a number (e.g., "ninety" to 90)
+      convertTextToNumber(text) {
+        // Define a mapping of text representations to numeric values
+        const numberMap = {
+          one: 1,
+          two: 2,
+          three: 3,
+          four: 4,
+          five: 5,
+          six: 6,
+          seven: 7,
+          eight: 8,
+          nine: 9,
+          ten: 10, // You can extend this mapping as needed
+        };
+
+        // Convert text to lowercase and check if it exists in the mapping
+        const numericValue = numberMap[text.toLowerCase()];
+
+        // Return the numeric value or 0 if not found
+        return numericValue || 0;
+      },
+      // Handler for the "Confirm" button for the number modifier
+      handleConfirm() {
+        this.convertedValue = this.convertTextToNumber(this.textForConversion);
+      },
+    },
+  });
+
+  app.mount('#app');
+</script>
+</body>
+</html>

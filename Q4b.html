@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q4: Vue 3 Computed Properties</title>
+</head>
+<body>
+  <div id="app">
+     <!-- Navigation bar -->
+  <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+    <h1>Q4: Vue 3 Computed Properties</h1>
+
+    <!-- Computed Properties -->
+    <h2>Computed Properties</h2>
+    <form>
+      <label for="productPrice">Product Price:</label>
+      <input type="number" id="productPrice" v-model="productPrice" />
+
+      <label for="productDiscount">Product Discount:</label>
+      <input type="number" id="productDiscount" v-model="productDiscount" />
+
+      <button @click="calculateTotal">Calculate Total</button>
+    </form>
+
+    <p>Base Price: {{ basePrice }}</p>
+    <p>Discount: {{ discount }}</p>
+    <p>Total Price: {{ totalPrice }}</p>
+  </div>
+
+  <!-- Computed Properties -->
+<h2>Computed Properties</h2>
+<p>Computed properties in Vue 3 are values that are derived from one or more data properties. They are defined in the `computed` option and provide a way to perform calculations or manipulations on data in a declarative manner. In this example:</p>
+
+<!-- Base Price -->
+<p><strong>Base Price:</strong> The base price is a computed property that displays the product's original price. It is directly linked to the "Product Price" input field and updates automatically as the user changes the input value.</p>
+
+<!-- Discount -->
+<p><strong>Discount:</strong> The discount is another computed property that shows the discount applied to the product. Similar to the base price, it is linked to the "Product Discount" input field and updates based on user input.</p>
+
+<!-- Calculate Total Button -->
+<p><strong>Calculate Total Button:</strong> This button triggers the `calculateTotal` method when clicked. The method recalculates the computed properties, including the total price, based on the current values of "Product Price" and "Product Discount" inputs.</p>
+
+<!-- Total Price -->
+<p><strong>Total Price:</strong> The total price is a computed property that represents the final price of the product after applying the discount. It updates automatically whenever the base price or discount changes, ensuring that the total price is always accurate.</p>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          productPrice: 100,
+          productDiscount: 10,
+        };
+      },
+      computed: {
+        // Computed Property for Base Price
+        basePrice() {
+          return this.productPrice;
+        },
+
+        // Computed Property for Discount
+        discount() {
+          return this.productDiscount;
+        },
+
+        // Computed Property for Total Price (depends on basePrice and discount)
+        totalPrice() {
+          return this.productPrice - this.productDiscount;
+        },
+      },
+      methods: {
+        calculateTotal() {
+          // Triggered when the "Calculate Total" button is clicked
+          // Recalculates the computed properties
+        },
+      },
+    });
+    
+    app.mount('#app');
+  </script>
+</body>
+</html>

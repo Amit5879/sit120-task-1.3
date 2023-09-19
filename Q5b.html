@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q5: Vue 3 Class and Style Bindings</title>
+  <style>
+    .highlighted {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+ <!-- Navigation bar -->
+ <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+    <h1>Q5: Vue 3 Class and Style Bindings</h1>
+
+    <!-- a. Binding HTML class [v-bind:class] -->
+    <h2>Binding HTML class [v-bind:class]</h2>
+    <div :class="{ 'highlighted': isHighlighted }">This div's class is bound dynamically.</div>
+    <button @click="toggleHighlight">Toggle Highlight</button>
+
+    <!-- b. Binding Inline Styles [v-bind:style] -->
+    <h2>Binding Inline Styles [v-bind:style]</h2>
+    <p :style="customStyle">This paragraph has custom inline styles.</p>
+  </div>
+
+  <!-- Binding HTML class [v-bind:class] -->
+<h2>a. Binding HTML class [v-bind:class]</h2>
+<p>The concept of binding HTML classes using <code>v-bind:class</code> in Vue 3 allows you to dynamically apply or remove CSS classes to HTML elements based on data properties or conditions. In this example:</p>
+<ul>
+  <li>The <code>highlighted</code> class is bound to a <code>&lt;div&gt;</code> element.</li>
+  <li>When the <code>isHighlighted</code> data property is <code>true</code>, the <code>highlighted</code> class is applied, resulting in a yellow background.</li>
+  <li>Clicking the "Toggle Highlight" button toggles the value of <code>isHighlighted</code>, demonstrating how class binding dynamically changes the element's appearance.</li>
+</ul>
+
+<!-- Binding Inline Styles [v-bind:style] -->
+<h2>b. Binding Inline Styles [v-bind:style]</h2>
+<p>The concept of binding inline styles using <code>v-bind:style</code> in Vue 3 enables you to apply custom CSS styles directly to HTML elements based on data properties. In this example:</p>
+<ul>
+  <li>The <code>&lt;p&gt;</code> element has inline styles bound to the <code>customStyle</code> data property.</li>
+  <li><code>customStyle</code> defines custom CSS properties, such as <code>color</code> and <code>fontSize</code>.</li>
+  <li>As a result, the paragraph's text color is set to blue, and the font size is 18 pixels.</li>
+</ul>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          isHighlighted: false,
+          customStyle: {
+            color: 'blue',
+            fontSize: '18px',
+          },
+        };
+      },
+      methods: {
+        toggleHighlight() {
+          this.isHighlighted = !this.isHighlighted;
+        },
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

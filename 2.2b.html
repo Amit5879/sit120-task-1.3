@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.2.css">
+  <title>Buy Now</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    #app {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: tan;
+      border-radius: 5px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    select, input, textarea, button {
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .shirt-details {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: tan;
+    }
+
+    .contact-form {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: tan;
+    }
+
+  </style>
+</head>
+<body>
+
+ <!-- Navigation bar -->
+ <div class="navbar">
+    <a href="2.2.html">Home</a>
+    <a href="2.2b.html">Add To Cart</a>
+    <a href="2.2c.html">Payment</a>
+    <a href="Frontpage.html">About Me</a>
+  </div>
+  
+  <div id="app">
+    <header>
+      <h1>Add To Cart</h1>
+    </header>
+
+    <section>
+      <h2>Choose a Shirt or Jean</h2>
+      <select v-model="selectedShirt">
+        <option disabled value="">Select a shirt or Jean</option>
+        <option v-for="shirt in shirts" :key="shirt.id" :value="shirt.id">{{ shirt.name }}</option>
+      </select>
+      <div class="shirt-details" v-if="selectedShirt !== null">
+        <h2>Shirt Details</h2>
+        <h3>{{ shirts[selectedShirt - 1].name }}</h3>
+        <p>{{ shirts[selectedShirt - 1].description }}</p>
+        <p>Price: ${{ shirts[selectedShirt - 1].price }}</p>
+      </div>
+      <p v-else>Select a Shirt or Jean to view details.</p>
+    </section>
+
+    <section>
+      <h2>Contact Us</h2>
+      <div class="contact-form">
+        <form>
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" v-model="contactForm.name">
+
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" v-model="contactForm.email">
+
+          <label for="message">Message:</label>
+          <textarea id="message" v-model="contactForm.message"></textarea>
+
+          <button type="button" class="confirm-button" @click="showConfirmation = true">Confirm</button>
+          <div v-if="showConfirmation">
+            <p>Please review your information:</p>
+            <p><strong>Name:</strong> {{ contactForm.name }}</p>
+            <p><strong>Email:</strong> {{ contactForm.email }}</p>
+            <p><strong>Message:</strong> {{ contactForm.message }}</p>
+            <button type="submit" class="confirm-button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/vue@3.2.30/dist/vue.global.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          selectedShirt: null,
+          shirts: [
+            { id: 1, name: 'Classic White Shirt', description: 'A timeless white shirt. Perfect for formal occasions.', price: 25 },
+            { id: 2, name: 'Classic Black Shirt', description: 'A comfortable Black t-shirt. Great for everyday wear.', price: 25 },
+            { id: 3, name: 'Vintage Baggy Blue Jeans', description: 'Breathable Blue Jeans. Ideal for a casual 2000s look.', price: 75 },
+            { id: 4, name: 'Slim Black Jeans', description: 'Comfortable Black Jeans. A great look for smart-casual events.', price: 70 }
+          ],
+          contactForm: {
+            name: '',
+            email: '',
+            message: ''
+          },
+          showConfirmation: false
+        };
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>

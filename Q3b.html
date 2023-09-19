@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q3: Reactivity Fundamentals in Vue 3</title>
+</head>
+<body>
+  <div id="app">
+
+     <!-- Navigation bar -->
+  <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+    <h1>Q3: Reactivity Fundamentals in Vue 3</h1>
+
+    <!-- Vue 3 Reactivity Fundamentals Example -->
+    <div>
+        <h2>a. ref()</h2>
+        <p>Vue 3 provides the <code>ref()</code> function, which is used to create a reactive reference to a value.</p> 
+        <p>you to define reactive data that can be used in templates and methods. In this example, the <code>counter</code> is created as a reactive reference.</p>
+        <p>Counter: {{ counter }}</p>
+        <button @click="incrementCounter">Increment</button>
+        <button @click="resetCounter">Reset</button> <!-- Added reset button -->
+      </div>
+  
+      <div>
+        <h2>b. &lt;script setup&gt;</h2>
+        <p>The <code>&lt;script setup&gt;</code> syntax is a feature of Vue 3 that simplifies the structure of single-file components. It allows you to define data, methods, and computed properties in a more concise and readable way. In this example, the <code>message</code> is defined using <code>&lt;script setup&gt;</code>.</p>
+        <p>Message: {{ message }}</p>
+      </div>
+    </div>
+  
+    <!-- Vue 3 scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+    <script>
+      const { ref, reactive, onMounted } = Vue;
+  
+      const app = Vue.createApp({
+        setup() {
+          // a. ref()
+          const counter = ref(0);
+  
+          const incrementCounter = () => {
+            counter.value++;
+          };
+  
+          // Add a method to reset the counter
+          const resetCounter = () => {
+            counter.value = 0;
+          };
+  
+          // b. <script setup>
+          const message = 'Vue 3 Reactivity Fundamentals with <script setup>';
+  
+          // Return the data and methods to be used in the template
+          return {
+            counter,
+            incrementCounter,
+            resetCounter, // Expose the resetCounter method
+            message,
+          };
+        },
+      });
+  
+      app.mount('#app');
+    </script>
+  </body>
+  </html>

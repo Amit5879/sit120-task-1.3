@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.1.css">
+  <title>To Do lists</title>
+</head>
+<body>
+  <div id="app">
+
+     <!-- Navigation bar -->
+  <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.1.html">Vue 3</a>
+    <a href="2.1b.html">To Do</a>
+  </div>
+
+    <h1>Things That Must Be Done:</h1>
+    <div class="input-container">
+      <input v-model="newTask" @keyup.enter="addTask" placeholder="Add a new task">
+      <button @click="addTask">Add</button>
+    </div>
+    <button @click="toggleShowCompleted" class="show-completed-btn">
+      {{ showCompleted ? 'Hide Completed' : 'Show Completed' }}
+    </button>
+    <ul class="todo-list">
+      <li v-for="(task, index) in tasks" :key="index" v-show="!task.completed || showCompleted"
+          :class="{ completed: task.completed }">
+        <input type="checkbox" v-model="task.completed">
+        <span>{{ task.text }}</span>
+        <button @click="deleteTask(index)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.0.0/dist/vue.global.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

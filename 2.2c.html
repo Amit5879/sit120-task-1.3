@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.2.css">
+  <title>Payment - Clothes-Galore</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    .navbar {
+      background-color: black;
+      color: black;
+      text-align: center;
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+
+    .navbar a {
+      color:white;
+      text-decoration: none;
+      margin: 0 20px;
+    }
+
+    #app {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: tan;
+      border: 2px solid #333; /* Thick border for form outline */
+      border-radius: 5px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+    margin: 0;
+    font-size: 2em;
+    background-color: #333;
+    color: white;
+    text-align: center; /* Center the text */
+    padding: 10px 0;
+    margin: 0 auto; /* Center the header horizontally */
+    margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    /* Style for the CVV and Expiry Date section */
+    .cvv-expiry-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+  </style>
+</head>
+  <body>
+
+   <!-- Navigation bar -->
+  <div class="navbar">
+    <a href="2.2.html">Home</a>
+    <a href="2.2b.html">Add To Cart</a>
+    <a href="2.2c.html">Payment</a>
+    <a href="Frontpage.html">About Me</a>
+  </div>
+  
+    <div id="app">
+      <h1>Payment:</h1>
+      <form v-if="!showReview"> <!-- Hide the form when reviewing -->
+        <label for="cardName">Enter Full Name:</label>
+        <input type="text" id="cardName" v-model="formData.cardName" placeholder="Enter name on card" required>
+  
+        <!-- New subheading for card details -->
+        <h2>Enter Card Details:</h2>
+  
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" v-model="formData.cardNumber" placeholder="Enter card number" required>
+  
+        <!-- CVV and Expiry Date section follows the name on the card -->
+        <div class="cvv-expiry-section">
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" v-model="formData.cvv" placeholder="Enter CVV" required>
+  
+          <label for="expiryDate">Expiry Date:</label>
+          <input type="text" id="expiryDate" v-model="formData.expiryDate" placeholder="MM/YY" required>
+        </div>
+  
+        <label for="address">Billing Address:</label>
+        <textarea id="address" v-model="formData.address" placeholder="Enter billing address" required></textarea>
+  
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" v-model="formData.phoneNumber" placeholder="Enter phone number" required>
+  
+        <!-- Add a button to review details -->
+        <button type="button" @click="showReview = true">Review Details</button>
+      </form>
+  
+      <!-- Review section -->
+      <div v-if="showReview">
+        <h2>Review Your Details:</h2>
+        <p><strong>Name on Card:</strong> {{ formData.cardName }}</p>
+        <p><strong>Card Number:</strong> {{ formData.cardNumber }}</p>
+        <p><strong>CVV:</strong> {{ formData.cvv }}</p>
+        <p><strong>Expiry Date:</strong> {{ formData.expiryDate }}</p>
+        <p><strong>Billing Address:</strong> {{ formData.address }}</p>
+        <p><strong>Phone Number:</strong> {{ formData.phoneNumber }}</p>
+  
+        <!-- Add a button to confirm payment -->
+        <button type="button" @click="confirmPayment">Confirm Payment</button>
+      </div>
+    </div>
+  
+    <script src="https://unpkg.com/vue@3.2.30/dist/vue.global.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            formData: {
+              cardName: '',
+              cardNumber: '',
+              cvv: '',
+              expiryDate: '',
+              address: '',
+              phoneNumber: '',
+            },
+            showReview: false, // Initially, don't show the review section
+          };
+        },
+        methods: {
+          confirmPayment() {
+            alert('Payment confirmed!'); // Replace with actual logic
+          },
+        },
+      });
+  
+      app.mount('#app');
+    </script>
+  </body>
+  </html>

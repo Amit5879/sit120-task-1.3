@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles2.3.css">
+  <title>Q11: Router in Vue 3</title>
+</head>
+<body>
+  <div id="app">
+ <!-- Navigation bar -->
+ <div class="navbar">
+    <a href="Frontpage.html">About Me</a>
+    <a href="2.3.html">Home</a>
+    <a href="Q1b.html">Q1</a>
+    <a href="Q2b.html">Q2</a>
+    <a href="Q3b.html">Q3</a>
+    <a href="Q4b.html">Q4</a>
+    <a href="Q5b.html">Q5</a>
+    <a href="Q6b.html">Q6</a>
+    <a href="Q7b.html">Q7</a>
+    <a href="Q8b.html">Q8</a>
+    <a href="Q9b.html">Q9</a>
+    <a href="Q10b.html">Q10</a>
+    <a href="Q11b.html">Q11</a>
+  </div>
+
+    <h1>Q11: Router in Vue 3</h1>
+
+    <!-- Vue Router Concepts -->
+    <h2>a. Vue Router</h2>
+    <p>
+      Vue Router is a Vue.js official library that provides client-side routing capabilities for building single-page applications (SPAs).
+      It allows you to map URLs to components, enabling the creation of dynamic and multi-page experiences within a single-page application.
+    </p>
+
+    <h2>b. Navigation Links</h2>
+    <p>
+      In this example, standard <code>&lt;a&gt;</code> elements are used as navigation links. They enable users to navigate to different routes within the Vue application when clicked.
+    </p>
+
+    <h2>c. &lt;router-view&gt;</h2>
+    <p>
+      The <code>&lt;router-view&gt;</code> component is a placeholder that dynamically displays the content of the currently active route.
+      It ensures that the appropriate component is rendered based on the URL, allowing for seamless navigation and content loading.
+    </p>
+
+    <h2>d. Router Configuration</h2>
+    <p>
+      The router configuration defines the routes in the application. Each route specifies a path and the component to be displayed when that path is accessed.
+      Redirects can also be defined to handle default routes or navigate users to specific pages.
+    </p>
+    
+  </div>
+
+    <!-- Vue Router Elements -->
+    <!-- Navigation Links -->
+    <!-- <router-link> components replaced with standard <a> elements -->
+    <div>
+      <a href="/home">Home</a> |
+    </div>
+
+    <!-- Router View -->
+    <!-- <router-view> remains unchanged -->
+    <router-view></router-view>
+
+  <!-- Vue 3 and Vue Router scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@4.0.0/dist/vue-router.global.prod.js"></script>
+  <script>
+    // Define components for router views
+    const HomeComponent = { template: '<div><h2>Home Page</h2><p>Welcome to the Home page!</p></div>' };
+    const AboutComponent = { template: '<div><h2>About Page</h2><p>Learn more about us on the About page.</p></div>' };
+    const ContactComponent = { template: '<div><h2>Contact Page</h2><p>Contact us for any inquiries.</p></div>' };
+
+    // Create a router instance
+    const router = VueRouter.createRouter({
+      history: VueRouter.createWebHistory(),
+      routes: [
+        { path: '/home', component: HomeComponent },
+        { path: '/about', component: AboutComponent },
+        { path: '/contact', component: ContactComponent },
+        { path: '/', redirect: '/home' } // Redirect to the Home page by default
+      ],
+    });
+
+    
+
+    // Create a Vue app instance with Vue Router
+    const app = Vue.createApp({});
+    app.use(router); // Use the router
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
